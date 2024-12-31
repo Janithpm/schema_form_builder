@@ -88,12 +88,12 @@ class _ImageSelectorState extends State<ImageSelector> {
     }
   }
 
-  void _remove() {
-    setState(() {
-      _imagePreview = null;
-    });
-    widget.onImageSelect(null);
-  }
+  // void _remove() {
+  //   setState(() {
+  //     _imagePreview = null;
+  //   });
+  //   widget.onImageSelect(null);
+  // }
 
   Widget _preview() {
     if(_isUploading){

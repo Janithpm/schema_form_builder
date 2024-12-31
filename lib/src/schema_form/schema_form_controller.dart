@@ -31,6 +31,7 @@ class SchemaFormController {
     shownInstructionsPages.add(page.name);
 
     await Future.delayed(instructionDelay);
+    // ignore: use_build_context_synchronously
     _showInstructions(context, page.instructions!);
   }
 
