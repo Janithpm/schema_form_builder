@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:traveller_common/src/responsiveness/scale_extensions.dart';
 
 import '../schemas/form_instructions.dart';
 import 'instruction_item_widget.dart';
@@ -11,10 +10,9 @@ class InstructionSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
 
     return Padding(
-      padding: EdgeInsets.all(spacing.md),
+      padding: const EdgeInsets.all(12.0),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,9 +20,9 @@ class InstructionSheetWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ...instructions.content.map((item) => InstructionItemWidget(item: item, locale: locale)),
-            SizedBox(height: context.scaledHeight(spacing.md)),
+            const SizedBox(height: 16.0),
             Center(
-              child: TElevatedButton(
+              child: ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(instructions.action!.getText(locale)),
               ),

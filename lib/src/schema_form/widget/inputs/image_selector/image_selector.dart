@@ -198,7 +198,7 @@ class _ImageSelectorState extends State<ImageSelector> {
               child: OutlinedButton(
                 onPressed: () => selectMode(),
                 style: OutlinedButton.styleFrom(
-                    backgroundColor: colors.primaryTransparent(10),
+                    backgroundColor: theme.colorScheme.surface,
                     side: BorderSide(color: theme.colorScheme.primary),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -206,9 +206,7 @@ class _ImageSelectorState extends State<ImageSelector> {
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14)
                 ),
                 //Todo: localization for the button
-                child: Text(_imagePreview == null ? widget.buttonText : widget.buttonSelectedText, style: textStyles.button.copyWith(
-                  color: theme.colorScheme.primary,
-                )),
+                child: Text(_imagePreview == null ? widget.buttonText : widget.buttonSelectedText, style: theme.textTheme.titleSmall!.copyWith(color: theme.colorScheme.primary)),
               ),
             ),
           ],
@@ -242,9 +240,9 @@ class OptionButton extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           height: 100,
           decoration: BoxDecoration(
-            color: colors.secondarySolid(10),
+            color: Colors.black38,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: colors.secondarySolid(70)),
+            border: Border.all(color: theme.colorScheme.primary),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

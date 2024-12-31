@@ -9,7 +9,6 @@ class FormAgreement {
     required this.required,
   });
 
-  // Factory constructor to create Agreement from a Map
   factory FormAgreement.fromMap(Map<String, dynamic> agreementMap) {
     return FormAgreement(
       id: agreementMap['id'],

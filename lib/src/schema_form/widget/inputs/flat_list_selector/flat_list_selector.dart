@@ -51,7 +51,7 @@ class _FlatListSelectorState extends State<FlatListSelector> {
                   widget.onSelected(index);
                 },
                 child: Container(
-                  margin: EdgeInsets.all(spacing.xs),
+                  margin: const EdgeInsets.all(8.0),
                   width: 140,
                   decoration: BoxDecoration(
                       border: Border.all(
@@ -60,12 +60,12 @@ class _FlatListSelectorState extends State<FlatListSelector> {
                       ),
                       color: selectedVehicleIndex == index ? theme.colorScheme.secondary : theme.colorScheme.surface,
                       borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
-                          color: colors.neutralTransparent(2),
+                          color: Colors.black12,
                           spreadRadius: 3,
                           blurRadius: 10,
-                          offset: const Offset(0, 0),
+                          offset: Offset(0, 0),
                         ),
                       ]
                   ),

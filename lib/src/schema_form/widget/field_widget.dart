@@ -67,7 +67,9 @@ class FieldWidget extends StatelessWidget {
               child: ImageSelectorFormField(
                 label: field.label.getText(locale),
                 placeholder: field.custom?.attributes['placeholder'] ?? '',
-                compressionFn: () {},
+                compressionFn: (File file) async {
+                  return file;
+                },
                 reasonsRen: reasonsRen,
                 buttonText: 'Upload',
                 buttonSelectedText: 'Upload Again',
