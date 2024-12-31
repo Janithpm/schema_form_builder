@@ -1,4 +1,12 @@
 include: package:flutter_lints/flutter.yaml
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+analyzer:
+  plugins:
+    - import_lint
+
+import_lint:
+  rules:
+    restrict_imports_to_common:
+      target: "package:schema_form_builder/**/*.dart"
+      from: "package:schema_form_builder/lib/src/**/*.dart"
+      except: ["package:schema_form_builder/schema_form_builder.dart"]
