@@ -18,19 +18,18 @@ class ImageSelector extends StatefulWidget {
   final String buttonText;
   final String buttonSelectedText;
 
-  const ImageSelector({
-    super.key,
-    required this.label,
-    required this.onImageSelect,
-    this.image,
-    this.compressionFn,
-    this.camera,
-    this.fileSelectorType,
-    this.placeholder,
-    this.reasonsRen,
-    required this.buttonText,
-    required this.buttonSelectedText
-  });
+  const ImageSelector(
+      {super.key,
+      required this.label,
+      required this.onImageSelect,
+      this.image,
+      this.compressionFn,
+      this.camera,
+      this.fileSelectorType,
+      this.placeholder,
+      this.reasonsRen,
+      required this.buttonText,
+      required this.buttonSelectedText});
 
   @override
   State<ImageSelector> createState() => _ImageSelectorState();
@@ -44,7 +43,7 @@ class _ImageSelectorState extends State<ImageSelector> {
   @override
   void initState() {
     super.initState();
-    if(widget.image != null) _imagePreview = widget.image;
+    if (widget.image != null) _imagePreview = widget.image;
     // _checkPermissions();
   }
 
@@ -65,12 +64,14 @@ class _ImageSelectorState extends State<ImageSelector> {
 
       File? processedImage;
       // if (isJpg(originalFile)) {
-        processedImage = originalFile;
+      processedImage = originalFile;
       // } else {
       //   processedImage = await convertToJpg(originalFile);
       // }
 
-      processedImage = widget.compressionFn != null ? await widget.compressionFn!(processedImage) : processedImage;
+      processedImage = widget.compressionFn != null
+          ? await widget.compressionFn!(processedImage)
+          : processedImage;
 
       setState(() {
         _isUploading = true;
@@ -96,16 +97,16 @@ class _ImageSelectorState extends State<ImageSelector> {
   // }
 
   Widget _preview() {
-    if(_isUploading){
+    if (_isUploading) {
       return const Center(child: CircularProgressIndicator());
     }
     if (_imagePreview != null && _imagePreview!.existsSync()) {
       return Image.file(_imagePreview!, fit: BoxFit.cover);
     }
 
-    if(widget.placeholder != null) {
-      return Center(child: Image.asset(widget.placeholder!));
-    }
+    // if(widget.placeholder != null) {
+    //   return Center(child: Image.asset(widget.placeholder!));
+    // }
 
     return const Center(child: Icon(Icons.camera_enhance_outlined));
   }
@@ -134,7 +135,9 @@ class _ImageSelectorState extends State<ImageSelector> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  if(widget.fileSelectorType == null || widget.fileSelectorType == FileSelectorType.camera || widget.fileSelectorType == FileSelectorType.both)
+                  if (widget.fileSelectorType == null ||
+                      widget.fileSelectorType == FileSelectorType.camera ||
+                      widget.fileSelectorType == FileSelectorType.both)
                     OptionButton(
                       label: 'Camera',
                       icon: Icons.camera_alt_outlined,
@@ -143,8 +146,12 @@ class _ImageSelectorState extends State<ImageSelector> {
                         _select(ImageSource.camera);
                       },
                     ),
-                  if(widget.fileSelectorType == null || widget.fileSelectorType == FileSelectorType.both) const SizedBox(width: 20),
-                  if(widget.fileSelectorType == null || widget.fileSelectorType == FileSelectorType.gallery || widget.fileSelectorType == FileSelectorType.both)
+                  if (widget.fileSelectorType == null ||
+                      widget.fileSelectorType == FileSelectorType.both)
+                    const SizedBox(width: 20),
+                  if (widget.fileSelectorType == null ||
+                      widget.fileSelectorType == FileSelectorType.gallery ||
+                      widget.fileSelectorType == FileSelectorType.both)
                     OptionButton(
                       label: 'Gallery',
                       icon: Icons.folder_copy_outlined,
@@ -157,11 +164,10 @@ class _ImageSelectorState extends State<ImageSelector> {
               ),
               const Spacer(),
               ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('Cancel')
-              )
+                  child: const Text('Cancel'))
             ],
           ),
         );
@@ -182,15 +188,11 @@ class _ImageSelectorState extends State<ImageSelector> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.label, style: theme.textTheme.titleSmall ),
+        Text(widget.label, style: theme.textTheme.titleSmall),
         const SizedBox(height: 16),
         ...widget.reasonsRen ?? [],
         const SizedBox(height: 16),
-        SizedBox(
-            height: 250,
-            width: double.infinity,
-            child: _preview()
-        ),
+        SizedBox(height: 250, width: double.infinity, child: _preview()),
         const SizedBox(height: 24),
         Row(
           children: [
@@ -203,10 +205,15 @@ class _ImageSelectorState extends State<ImageSelector> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14)
-                ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 14)),
                 //Todo: localization for the button
-                child: Text(_imagePreview == null ? widget.buttonText : widget.buttonSelectedText, style: theme.textTheme.titleSmall!.copyWith(color: theme.colorScheme.primary)),
+                child: Text(
+                    _imagePreview == null
+                        ? widget.buttonText
+                        : widget.buttonSelectedText,
+                    style: theme.textTheme.titleSmall!
+                        .copyWith(color: theme.colorScheme.primary)),
               ),
             ),
           ],
@@ -215,7 +222,6 @@ class _ImageSelectorState extends State<ImageSelector> {
     );
   }
 }
-
 
 class OptionButton extends StatelessWidget {
   final IconData icon;
@@ -250,7 +256,9 @@ class OptionButton extends StatelessWidget {
             children: [
               Icon(icon, color: theme.colorScheme.primary, size: 30),
               const SizedBox(width: 10),
-              Text(label, style: theme.textTheme.titleSmall!.copyWith(color: theme.colorScheme.primary)),
+              Text(label,
+                  style: theme.textTheme.titleSmall!
+                      .copyWith(color: theme.colorScheme.primary)),
             ],
           ),
         ),
