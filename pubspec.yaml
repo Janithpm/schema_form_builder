@@ -1,6 +1,6 @@
 name: schema_form_builder
 description: "JSON schema form builder for Flutter"
-version: 0.0.2
+version: 0.0.3
 homepage: "https://janithpm.github.io"
 
 environment:
